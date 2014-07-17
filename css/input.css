@@ -1,0 +1,167 @@
+/*---------------------------------------------------------------------------------------------
+*
+*	Field: Taxonomy Relationship
+*
+*---------------------------------------------------------------------------------------------*/
+
+.acf_taxonomy_relationship {
+	position: relative;
+	overflow: hidden;
+}
+
+.acf_taxonomy_relationship .relationship_left {
+	width: 50%;
+	float: left;
+}
+
+.acf_taxonomy_relationship .relationship_right {
+	width: 50%;
+	float: left;
+}
+
+.acf_taxonomy_relationship .relationship_label {
+	font-size: 12px;
+	font-family: sans-serif;
+	color: #999;
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.acf_taxonomy_relationship .widefat {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.acf_taxonomy_relationship .widefat th {
+	border-bottom: 0 none;
+}
+
+
+.acf_taxonomy_relationship .relationship_search {
+	margin: 0;
+	font-size: 12px;
+	line-height: 13px;
+	border-radius: 13px;
+	font-family: sans-serif;
+	padding: 5px 9px !important;
+}
+
+.acf_taxonomy_relationship .relationship_list {
+	background: #fff;
+	position: relative;
+	overflow: auto;
+	height: 150px;
+	border: #DFDFDF solid 1px;
+	border-top-width: 0;
+}
+
+.acf_taxonomy_relationship .relationship_list li.hide {
+	background: #f8f8f8;
+}
+
+.acf_taxonomy_relationship .relationship_list li.hide a {
+	cursor: default;
+	color: #21759B !important;
+	opacity: 0.5;
+	background: transparent !important;
+}
+
+.acf_taxonomy_relationship .relationship_list li {
+	border-bottom: #f8f8f8 solid 1px;
+}
+
+.acf_taxonomy_relationship .relationship_list li a {
+	display: block;
+	position: relative;
+	padding: 7px 9px;
+	text-decoration: none;
+}
+
+.acf_taxonomy_relationship .relationship_list li a .relationship-item-info {
+	color: #CCC;
+	text-transform: uppercase;
+	float: right;
+	font-size: 11px;
+}
+
+.acf_taxonomy_relationship .relationship_list li:hover a .relationship-item-info {
+	padding-right: 24px;
+	color: #999;
+}
+
+.acf_taxonomy_relationship .relationship_list li.hide:hover a .relationship-item-info {
+	padding-right: 0;
+	color: #CCC;
+}
+
+.acf_taxonomy_relationship .relationship_list li a:hover,
+.acf_taxonomy_relationship .relationship_list li a:focus {
+	background: #eaf2fa;
+	color: #000;
+	box-shadow: #d6e1ec 0 0 0 1px;
+}
+
+.acf_taxonomy_relationship .relationship_right .relationship_list {
+	margin-left: 10px;
+	height: 193px;
+	min-height: 193px;
+	border-top-width:1px; 
+}
+
+.acf_taxonomy_relationship .relationship_list li a .acf-button-add,
+.acf_taxonomy_relationship .relationship_list li a .acf-button-remove {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: none;
+	
+	cursor: pointer;
+}
+
+.acf_taxonomy_relationship .relationship_list li a:hover .acf-button-add,
+.acf_taxonomy_relationship .relationship_list li a:hover .acf-button-remove {
+	display: block;
+}
+
+.acf_taxonomy_relationship .relationship_list li.hide a:hover .acf-button-add {
+	display: none;
+}
+
+
+.acf_taxonomy_relationship .relationship_right .relationship_list li a {
+	cursor: move;
+}
+
+.acf_taxonomy_relationship .load-more .acf-loading {
+	padding: 0;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+.acf_taxonomy_relationship.no-results .load-more {
+	display: none;
+}
+
+
+.acf_taxonomy_relationship select {
+	font-family: sans-serif;
+	font-size: 12px;
+	
+}
+
+.acf_taxonomy_relationship .widefat tr + tr th {
+	border-radius: 0;
+	border-top: #DFDFDF solid 1px;
+	background: #F3F3F3;
+	
+}
+
+.acf_taxonomy_relationship .relationship_list .result-thumbnail {
+	width:21px; 
+	height:21px; 
+	background:#F9F9F9; 
+	border:#E1E1E1 solid 1px; 
+	float:left; 
+	margin:-3px 5px 0 0;
+}
