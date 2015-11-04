@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Taxonomy Relationship
 Plugin URI: https://github.com/DanBeckett/acf-taxonomy-relationship
 Description: Extends Advanced Custom Fields to allow you to select and order Taxonomy Terms in the same way the standard Relationship field allows with Posts.
-Version: 0.8.2
+Version: 0.9
 Author: Dan Beckett
 Author URI: http://www.door4.com
 License: GPLv2 or later

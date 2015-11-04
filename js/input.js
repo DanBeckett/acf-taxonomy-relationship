@@ -126,7 +126,7 @@
 				dataType		:	'json',
 				data			:	$.extend({ 
 					action		:	'acf/fields/taxonomy_relationship/query_terms', 
-					post_id		:	acf.o.post_id,
+					term_id		:	acf.o.term_id,
 					nonce		:	acf.o.nonce
 				}, this.o ),
 				success			:	function( json ){
@@ -178,9 +178,9 @@
 			// apply .hide to left li's
 			this.$left.find('a').each(function(){
 				
-				var id = $(this).attr('data-post_id');
+				var id = $(this).attr('data-term_id');
 				
-				if( _this.$right.find('a[data-post_id="' + id + '"]').exists() )
+				if( _this.$right.find('a[data-term_id="' + id + '"]').exists() )
 				{
 					$(this).parent().addClass('hide');
 				}
@@ -191,7 +191,7 @@
 		add : function( $a ){
 			
 			// vars
-			var id = $a.attr('data-post_id'),
+			var id = $a.attr('data-term_id'),
 				title = $a.html();
 			
 			
@@ -215,8 +215,9 @@
 			
 			
 			// template
+			
 			var data = {
-					post_id		:	$a.attr('data-post_id'),
+					term_id		:	$a.attr('data-term_id'),
 					title		:	$a.html(),
 					name		:	this.$input.attr('name')
 				},
@@ -244,7 +245,7 @@
 			
 			
 			// show
-			this.$left.find('a[data-post_id="' + $a.attr('data-post_id') + '"]').parent('li').removeClass('hide');
+			this.$left.find('a[data-term_id="' + $a.attr('data-term_id') + '"]').parent('li').removeClass('hide');
 			
 			
 			// trigger change on new_li

@@ -263,17 +263,15 @@ class acf_field_taxonomy_relationship extends acf_field {
 	*/
 	
 	function create_field( $field )
-	{
+	{ 
 		// global
 		global $post;
-
 		
 		// no row limit?
 		if( !$field['max'] || $field['max'] < 1 )
 		{
 			$field['max'] = 9999;
 		}
-		
 		
 		// class
 		$class = '';
@@ -292,13 +290,11 @@ class acf_field_taxonomy_relationship extends acf_field {
 			'field_key' => $field['key']
 		);
 		
-		
 		// Lang
 		if( defined('ICL_LANGUAGE_CODE') )
 		{
 			$attributes['lang'] = ICL_LANGUAGE_CODE;
 		}
-		
 		
 		// parent
 		preg_match('/\[(field_.*?)\]/', $field['name'], $ancestor);
@@ -308,96 +304,98 @@ class acf_field_taxonomy_relationship extends acf_field {
 		}
 				
 		?>
-<div class="acf_taxonomy_relationship<?php echo $class; ?>"<?php foreach( $attributes as $k => $v ): ?> data-<?php echo $k; ?>="<?php echo $v; ?>"<?php endforeach; ?>>
-	
-	
-	<!-- Hidden Blank default value -->
-	<input type="hidden" name="<?php echo $field['name']; ?>" value="" />
-	
-	
-	<!-- Left List -->
-	<div class="relationship_left">
-		<table class="widefat">
-			<thead>
-				<?php if(in_array( 'search', $field['filters']) ): ?>
-				<tr>
-					<th>
-						<input class="relationship_search" placeholder="<?php _e("Search...",'acf'); ?>" type="text" id="relationship_<?php echo $field['name']; ?>" />
-					</th>
-				</tr>
-				<?php endif; ?>
-			</thead>
-		</table>
-		<ul class="bl relationship_list">
-			<li class="load-more">
-				<div class="acf-loading"></div>
-			</li>
-		</ul>
-	</div>
-	<!-- /Left List -->
-	
-	<!-- Right List -->
-	<div class="relationship_right">
-		<ul class="bl relationship_list">
-		<?php
-		if( $field['value'] )
-		{
-			foreach( $field['value'] as $key => $term_id )
-			{
-				$term_object = '';
-				if(is_array($field['taxonomy'])) {
-					$tax = $field['taxonomy'];
-					if(in_array('all', $tax)) {
-						$taxonomy_args = array('public' => true);
-						$tax = get_taxonomies($taxonomy_args, 'names');
-						foreach ($tax as $t => $taxonomy) {
-							if(term_exists($term_id, $taxonomy)) {
-								$term_object = get_term($term_id, $taxonomy);
-							}
-						}
-					} else {
-						foreach ($tax as $t => $taxonomy) {
-							if(term_exists($term_id, $taxonomy)) {
-								$term_object = get_term($term_id, $taxonomy);
-							}
-						}
-					};
-				} else {
-					if(term_exists($term_id, $taxonomy)) {
-						$term_object = get_term($term_id, $field['taxonomy']);
-					}
-				};
-
-				// right aligned info
-				$title = '<span class="relationship-item-info">';
-				$title .= $term_object->taxonomy;
-				$title .= '</span>';
-				
-				$title .= apply_filters('the_title', $term_object->name , $term_object->term_id); 
-				
-				
-				// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
-				
-				
-				echo '<li>
-					<a href="' . get_term_link($term_object->term_id, $term_object->taxonomy) . '" class="" data-term_id="' . $term_object->term_id . '">' . $title . '<span class="acf-button-remove"></span></a>
-					<input type="hidden" name="' . $field['name'] . '[]" value="' . $term_object->term_id . '" />
-				</li>';
-				
-					
-			}
-		}
+		
+		<div class="acf_taxonomy_relationship<?php echo $class; ?>"<?php foreach( $attributes as $k => $v ): ?> data-<?php echo $k; ?>="<?php echo $v; ?>"<?php endforeach; ?>>
 			
-		?>
-		</ul>
-	</div>
-	<!-- / Right List -->
+			<!-- Hidden Blank default value -->
+			<input type="hidden" name="<?php echo $field['name']; ?>" value="" />
 	
-</div>
-		<?php
+			<!-- Left List -->
+			<div class="relationship_left">
+				<table class="widefat">
+					<thead>
+						<?php if(in_array( 'search', $field['filters']) ): ?>
+						<tr>
+							<th>
+								<input class="relationship_search" placeholder="<?php _e("Search...",'acf'); ?>" type="text" id="relationship_<?php echo $field['name']; ?>" />
+							</th>
+						</tr>
+						<?php endif; ?>
+					</thead>
+				</table>
+				<ul class="bl relationship_list">
+					<li class="load-more">
+						<div class="acf-loading"></div>
+					</li>
+				</ul>
+			</div>
+			<!-- /Left List -->
+	
+			<!-- Right List -->
+			<div class="relationship_right">
+				<ul class="bl relationship_list">
+					<?php 
+					if( $field['value'] )
+					{ 
+						
+						foreach( $field['value'] as $key => $term_id )
+						{
+							$term_object = '';
+							if(is_array($field['taxonomy'])) {
+								$tax = $field['taxonomy'];
+								if(in_array('all', $tax)) {
+									$taxonomy_args = array('public' => true);
+									$tax = get_taxonomies($taxonomy_args, 'names');
+									foreach ($tax as $t => $taxonomy) {
+										if(term_exists($term_id, $taxonomy)) {
+											$term_object = get_term($term_id, $taxonomy);
+										}
+									}
+								} else {
+									foreach ($tax as $t => $taxonomy) {
+										if(term_exists($term_id, $taxonomy)) {
+											$term_object = get_term($term_id, $taxonomy);
+										}
+									}
+								};
+							} else {
+								if(term_exists($term_id, $taxonomy)) {
+									$term_object = get_term($term_id, $field['taxonomy']);
+								}
+							};
+			
+							// right aligned info
+							$title = '<span class="relationship-item-info">';
+							$title .= $term_object->taxonomy;
+							$title .= '</span>';
+							
+							// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
+							
+							$title .= apply_filters('the_title', $term_object->name , $term_object->term_id);
+							
+							$fieldnewslot = $field['name'] . "[]";
+							$termlink = get_term_link($term_object->term_id, $term_object->taxonomy);
+							
+							if(!is_wp_error($termlink)) {	
+							
+								echo '<li>
+									<a href="' . $termlink . '" class="" data-term_id="' . $term_object->term_id . '">' . $title . '
+										<span class="acf-button-remove"></span>
+									</a>
+									<input type="hidden" name="' . $fieldnewslot . '" value="' . $term_object->term_id . '" />
+								</li>';
+							
+							}
+								
+						}
+					} ?>
+				</ul>
+			</div>
+			<!-- / Right List -->
+	
+		</div>
+	<?php 
 	}
-
-	
 	
 	
 	/*
@@ -510,7 +508,7 @@ class acf_field_taxonomy_relationship extends acf_field {
 
 
 		// register ACF scripts
-		wp_register_script( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'js/input.js', array('acf-input'), $this->settings['version'] );
+		wp_register_script( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'js/input.js', array('underscore', 'acf-input'), $this->settings['version'] );
 		wp_register_style( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'css/input.css', array('acf-input'), $this->settings['version'] ); 
 
 

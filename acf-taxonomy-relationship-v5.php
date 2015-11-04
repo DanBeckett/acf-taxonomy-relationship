@@ -373,17 +373,23 @@ class acf_field_taxonomy_relationship extends acf_field {
 				$title .= $term_object->taxonomy;
 				$title .= '</span>';
 				
-				$title .= apply_filters('the_title', $term_object->name , $term_object->term_id); 
-				
-				
 				// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
 				
+				$title .= apply_filters('the_title', $term_object->name , $term_object->term_id); 
 				
-				echo '<li>
-					<a href="' . get_term_link($term_object->term_id, $term_object->taxonomy) . '" class="" data-term_id="' . $term_object->term_id . '">' . $title . '<span class="acf-button-remove"></span></a>
-					<input type="hidden" name="' . $field['name'] . '[]" value="' . $term_object->term_id . '" />
-				</li>';
+				$fieldnewslot = $field['name'] . "[]";
+				$termlink = get_term_link($term_object->term_id, $term_object->taxonomy);
 				
+				if(!is_wp_error($termlink)) {	
+				
+					echo '<li>
+						<a href="' . $termlink . '" class="" data-term_id="' . $term_object->term_id . '">' . $title . '
+							<span class="acf-button-remove"></span>
+						</a>
+						<input type="hidden" name="' . $fieldnewslot . '" value="' . $term_object->term_id . '" />
+					</li>';
+				
+				};
 					
 			}
 		}
@@ -510,7 +516,7 @@ class acf_field_taxonomy_relationship extends acf_field {
 
 
 		// register ACF scripts
-		wp_register_script( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'js/input.js', array('acf-input'), $this->settings['version'] );
+		wp_register_script( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'js/input.js', array('underscore', 'acf-input'), $this->settings['version'] );
 		wp_register_style( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'css/input.css', array('acf-input'), $this->settings['version'] ); 
 
 
