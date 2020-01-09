@@ -516,8 +516,8 @@ class acf_field_taxonomy_relationship extends acf_field {
 
 
 		// register ACF scripts
-		wp_register_script( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'js/input.js', array('underscore', 'acf-input'), $this->settings['version'] );
-		wp_register_style( 'acf-input-taxonomy_relationship', $this->settings['dir'] . 'css/input.css', array('acf-input'), $this->settings['version'] ); 
+		wp_register_script( 'acf-input-taxonomy_relationship', plugin_dir_url( __FILE__ ) . 'js/input.js', array('underscore', 'acf-input'), $this->settings['version'] );
+		wp_register_style( 'acf-input-taxonomy_relationship', plugin_dir_url( __FILE__ ) . 'css/input.css', array('acf-input'), $this->settings['version'] ); 
 
 
 		// scripts
