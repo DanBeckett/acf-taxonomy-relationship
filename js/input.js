@@ -20,7 +20,7 @@
 		$input : null,
 		$left : null,
 		$right : null,
-				
+
 		o : {},
 		
 		timeout : null,
@@ -36,7 +36,7 @@
 			this.$left = this.$el.find('.relationship_left'),
 			this.$right = this.$el.find('.relationship_right');
 			
-			
+
 			// get options
 			this.o = acf.helpers.get_atts( this.$el );
 			
@@ -56,11 +56,11 @@
 			{
 				return;
 			}
-			
-			
+
+
 			// set height of right column
 			this.$right.find('.relationship_list').height( this.$left.height() -2 );
-			
+
 			
 			// right sortable
 			this.$right.find('.relationship_list').sortable({
@@ -268,15 +268,15 @@
 	*  @param	{object}	el		DOM object which may contain new ACF elements
 	*  @return	N/A
 	*/
-	
+
 	$(document).on('acf/setup_fields', function(e, el){
-		
+
 		$(el).find('.acf_taxonomy_relationship').each(function(){
-			
+
 			acf.fields.taxonomy_relationship.set({ $el : $(this) }).init();
-			
+
 		});
-		
+
 	});
 	
 	
